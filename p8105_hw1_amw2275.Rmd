@@ -6,17 +6,48 @@ output: github_document
 ---
 
 ## Problem 1
-```{r setup message = false}
+
+```{r setup}
 library(tidyverse)
 ```
-^error here^
+
 Create a data frame.
+
 ```{r create_df}
 prob1_df = 
   tibble(
     samp = rnorm(10),
     samp_gt0 = samp > 0,
-    char_vec = c("a","b","c","d","e","f","g","h","i","j"),
-    factor_vec = factor(c("low","low","low","mid","mid","mid","mid","hi","hi","hi"))
-)
+    char_vec = c("a", "b", "c", "d", "e", "f", "g", "h", "i", "j"),
+    factor_vec = factor(c("low", "low", "low", "mid", "mid", "mid", "mid", "hi", "hi", "hi"))
+  )
 ```
+
+Take the mean of each variable in the data frame.
+
+```{r mean_pull_var}
+mean(pull(prob1_df, samp))
+mean(pull(prob1_df, samp_gt0))
+mean(pull(prob1_df, char_vec))
+mean(pull(prob1_df, factor_vec))
+```
+
+I can take the mean of numeric and logical variables, but not character or factor.
+Try converting to numeric:
+
+```{r numeric_manip, echo = TRUE}
+as.numeric(pull(prob1_df, samp_gt0))
+as.numeric(pull(prob1_df, char_vec))
+as.numeric(pull(prob1_df, factor_vec))
+```
+
+and multiplying by the random numerical vector.
+
+```{r numeric_multiply, collapse = TRUE}
+as.numeric(pull(prob1_df, samp_gt0)) * pull(prob1_df, samp)
+as.numeric(pull(prob1_df, char_vec)) * pull(prob1_df, samp)
+as.numeric(pull(prob1_df, factor_vec)) * pull(prob1_df, samp)
+```
+
+
+
