@@ -1,13 +1,13 @@
 ---
 title: "Homework 1"
 author: "Adam Whalen"
-date: "9/17/2020"
+date: "9/19/2020"
 output: github_document
 ---
 
 ## Problem 1
 
-```{r setup}
+```{r setup, message = FALSE}
 library(tidyverse)
 ```
 
@@ -35,19 +35,26 @@ mean(pull(prob1_df, factor_vec))
 I can take the mean of numeric and logical variables, but not character or factor.
 Try converting to numeric:
 
-```{r numeric_manip, echo = TRUE}
+```{r numeric_manip, eval = FALSE}
 as.numeric(pull(prob1_df, samp_gt0))
 as.numeric(pull(prob1_df, char_vec))
 as.numeric(pull(prob1_df, factor_vec))
 ```
 
-and multiplying by the random numerical vector.
+I can convert logical and factor to numeric, but not character, which you can see by multiplying by the random numerical vector.
 
 ```{r numeric_multiply, collapse = TRUE}
 as.numeric(pull(prob1_df, samp_gt0)) * pull(prob1_df, samp)
 as.numeric(pull(prob1_df, char_vec)) * pull(prob1_df, samp)
-as.numeric(pull(prob1_df, factor_vec)) * pull(prob1_df, samp)
+as.numeric(pull(prob1_df, factor_vec)) * pull(prob1_df, samp) 
 ```
 
+## Problem 2
 
+Load data set: 
 
+````{r prob2_load}
+data("penguins", package = "palmerpenguins")
+```
+
+The Penguins data set contains `r nrow(penguins_raw)` observations and `r ncol(penguins_raw)` variables. 
