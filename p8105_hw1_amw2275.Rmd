@@ -56,9 +56,24 @@ Load data set:
 data("penguins", package = "palmerpenguins")
 ```
 
-The Penguins data set describes different species of penguins and their attributes, including different species such as  `r unique(pull(penguins, species))`, and their island in Antarctica such as `r unique(pull(penguins, island))`. The set contains `r nrow(penguins)` observations and `r ncol(penguins)` variables. 
+The Penguins data set describes different species of penguins and their attributes, including different species such as  `r unique(pull(penguins, species))`, their home islands in Antarctica (`r unique(pull(penguins, island))`), and other variables describing various attributes like bill length and body mass. The set contains `r nrow(penguins)` observations and `r ncol(penguins)` variables. The average flipper length of the penguins in the set is `r round(mean(pull(penguins, flipper_length_mm), na.rm = TRUE), digits = 2)` millimeters.
 
+Scatter plot of flipper length on bill length, by species:
+```{r penguin_plot}
+penguin_plot <- ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species)) + geom_point(na.rm = TRUE)
+penguin_plot + labs(title = "Flipper length and bill length \n by species", x = "Bill length", y = "Flipper length")
+```
 
+Finally, export the plot. 
+```{r}
+ggsave(
+ filename = penguin_plot,
+ plot = penguin_plot,
+ device = NULL,
+ path = ./data_science_i/p8105_hw1_amw2275,
+ scale = 1,
+ limitsize = TRUE)
+```
 
 
 
