@@ -32,8 +32,7 @@ mean(pull(prob1_df, char_vec))
 mean(pull(prob1_df, factor_vec))
 ```
 
-I can take the mean of numeric and logical variables, but not character or factor.
-Try converting to numeric:
+I can take the mean of numeric and logical variables, but not character or factor. When I try converting to numeric we see that:
 
 ```{r numeric_manip, eval = FALSE}
 as.numeric(pull(prob1_df, samp_gt0))
@@ -57,4 +56,12 @@ Load data set:
 data("penguins", package = "palmerpenguins")
 ```
 
-The Penguins data set contains `r nrow(penguins_raw)` observations and `r ncol(penguins_raw)` variables. 
+The Penguins data set describes different species of penguins and their attributes, including different species such as  `r unique(pull(penguins, species))`, and their island in Antarctica such as `r unique(pull(penguins, island))`. The set contains `r nrow(penguins)` observations and `r ncol(penguins)` variables. 
+
+
+
+
+
+
+
+
